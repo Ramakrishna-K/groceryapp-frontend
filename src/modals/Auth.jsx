@@ -4,6 +4,7 @@
 import { useState } from "react";
 import { useAppContext } from "../context/appContext";
 import { toast } from "react-hot-toast";
+const backendURL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
 
 const Auth = () => {
   const [state, setState] = useState("login");
@@ -20,7 +21,7 @@ const Auth = () => {
       // 🔹 LOGIN
       if (state === "login") {
         const { data } = await axios.post(
-          "/api/user/login",
+          `${backendURL}/api/user/login`,
           { email, password },
           { withCredentials: true } // ✅ SAME AS credentials: "include"
         );
@@ -38,7 +39,7 @@ const Auth = () => {
       // 🔹 REGISTER
       if (state === "register") {
         const { data } = await axios.post(
-          "/api/user/register",
+          `${backendURL}/api/user/register`,
           { name, email, password },
           { withCredentials: true }
         );

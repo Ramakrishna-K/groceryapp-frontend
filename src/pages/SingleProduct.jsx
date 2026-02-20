@@ -5,6 +5,7 @@ import { useAppContext } from "../context/appContext";
 import { Link, useParams } from "react-router-dom";
 import { assets } from "../assets/assets";
 import ProductCard from "../components/ProductCard";
+const backendURL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
 
 const SingleProduct = () => {
   const { products, navigate, addToCart } = useAppContext();
@@ -53,7 +54,7 @@ const SingleProduct = () => {
                 className="border w-16 sm:w-20 cursor-pointer rounded overflow-hidden"
               >
                 <img
-                  src={`http://localhost:5000/images/${img}`}
+                  src={`${backendURL}/images/${img}`}
                   alt=""
                   className="object-cover"
                 />
@@ -63,7 +64,7 @@ const SingleProduct = () => {
 
           <div className="border rounded overflow-hidden max-w-xs sm:max-w-sm">
             <img
-              src={`http://localhost:5000/images/${thumbnail}`}
+              src={`${backendURL}/images/${thumbnail}`}
               alt="product"
               className="w-full object-contain"
             />

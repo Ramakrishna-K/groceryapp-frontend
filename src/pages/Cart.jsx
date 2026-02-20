@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useAppContext } from "../context/appContext";
 import toast from "react-hot-toast";
+const backendURL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
 
 const Cart = () => {
   const {
@@ -37,7 +38,7 @@ const Cart = () => {
 
   useEffect(() => {
     if (user) {
-      axios.get("/api/address/get").then(({ data }) => {
+      axios.get(`${backendURL}/api/address/get`).then(({ data }) => {
         if (data.success) {
           setAddress(data.addresses);
           setSelectedAddress(data.addresses[0] || null);
@@ -50,7 +51,7 @@ const Cart = () => {
     if (!selectedAddress) return toast.error("Please select an address");
 
     try {
-      const { data } = await axios.post("/api/order/cod", {
+      const { data } = await axios.post(`${backendURL}/api/order/cod`, {
         items: cartArray.map((item) => ({
           product: item._id,
           quantity: item.quantity,
@@ -105,7 +106,7 @@ const Cart = () => {
                 className="w-20 h-20 md:w-24 md:h-24 border rounded flex items-center justify-center cursor-pointer hover:shadow-lg transition"
               >
                 <img
-                  src={`http://localhost:5000/images/${product.image[0]}`}
+                  src={`${backendURL}/images/${product.image[0]}`}
                   className="max-w-full h-full object-cover"
                   alt={product.name}
                 />

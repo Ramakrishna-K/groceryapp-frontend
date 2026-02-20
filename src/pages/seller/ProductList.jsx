@@ -3,13 +3,14 @@
 
 import toast from "react-hot-toast";
 import { useAppContext } from "../../context/appContext";
+const backendURL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
 
 const ProductList = () => {
   const { products, fetchProducts, axios } = useAppContext();
 
   const toggleStock = async (id, inStock) => {
     try {
-      const { data } = await axios.post("/api/product/stock", { id, inStock });
+      const { data } = await axios.post(`${backendURL}/api/product/stock`, { id, inStock });
       if (data.success) {
         fetchProducts();
         toast.success(data.message);
@@ -42,7 +43,7 @@ const ProductList = () => {
               <tr key={product._id} className="border-t">
                 <td className="px-4 py-3 flex items-center gap-3">
                   <img
-                    src={`http://localhost:5000/images/${product.image[0]}`}
+                    src={`${backendURL}/images/${product.image[0]}`}
                     alt="Product"
                     className="w-14 h-14 object-cover rounded border"
                   />
@@ -83,7 +84,7 @@ const ProductList = () => {
           >
             <div className="flex items-center gap-3 min-w-0">
               <img
-                src={`http://localhost:5000/images/${product.image[0]}`}
+                src={`${backendURL}/images/${product.image[0]}`}
                 alt="Product"
                 className="w-14 h-14 object-cover rounded border shrink-0"
               />

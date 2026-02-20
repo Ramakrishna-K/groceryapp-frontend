@@ -1,9 +1,9 @@
 
 
-
 import { assets } from "../assets/assets";
 import { useAppContext } from "../context/appContext";
 
+const backendURL = import.meta.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
 const ProductCard = ({ product }) => {
   const { addToCart, removeFromCart, cartItems, navigate } = useAppContext();
 
@@ -12,9 +12,7 @@ const ProductCard = ({ product }) => {
   return (
     <div
       onClick={() => {
-        navigate(
-          `/product/${product.category.toLowerCase()}/${product._id}`
-        );
+        navigate(`/product/${product.category.toLowerCase()}/${product._id}`);
         scrollTo(0, 0);
       }}
       className="group bg-white rounded-xl shadow-sm hover:shadow-md transition p-3 flex flex-col text-center cursor-pointer"
@@ -22,16 +20,14 @@ const ProductCard = ({ product }) => {
       {/* IMAGE */}
       <div className="w-full aspect-square flex items-center justify-center">
         <img
-          src={`http://localhost:5000/images/${product.image[0]}`}
+          src={`${backendURL}/images/${product.image[0]}`}
           alt={product.name}
           className="max-h-24 sm:max-h-28 md:max-h-32 object-contain transition-transform duration-300 group-hover:scale-105"
         />
       </div>
 
       {/* CATEGORY */}
-      <p className="text-gray-400 text-xs mt-1">
-        {product.category}
-      </p>
+      <p className="text-gray-400 text-xs mt-1">{product.category}</p>
 
       {/* NAME */}
       <p className="text-sm sm:text-base font-medium text-gray-800 line-clamp-2 mt-1">
@@ -53,9 +49,8 @@ const ProductCard = ({ product }) => {
         <span className="text-xs text-gray-500">(4)</span>
       </div>
 
-      {/* PRICE + ADD BUTTON (RESPONSIVE) */}
+      {/* PRICE + ADD BUTTON */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-3 gap-2">
-        
         {/* PRICE */}
         <p className="text-indigo-600 font-semibold text-xs sm:text-sm">
           ₹{product.offerPrice}
@@ -84,7 +79,7 @@ const ProductCard = ({ product }) => {
                 alt="cart"
                 className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5"
               />
-              <span className="">Add</span>
+              <span>Add</span>
             </button>
           ) : (
             <div
@@ -107,4 +102,3 @@ const ProductCard = ({ product }) => {
 };
 
 export default ProductCard;
-
