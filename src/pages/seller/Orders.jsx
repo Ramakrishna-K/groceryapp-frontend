@@ -6,7 +6,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../context/appContext";
 import toast from "react-hot-toast";
-const backendURL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+// const backendURL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
 
 const Orders = () => {
   const placeholderImage =
@@ -18,7 +18,7 @@ const Orders = () => {
   // Fetch orders from backend
   const fetchOrders = async () => {
     try {
-      const { data } = await axios.get(`${backendURL}/api/order/seller`);
+      const { data } = await axios.get(`https://groceryapp-backend-552v.onrender.com/api/order/seller`);
       if (data.success) setOrders(data.orders);
       else toast.error(data.message);
     } catch (error) {
@@ -83,7 +83,7 @@ const Orders = () => {
                     className="w-12 h-12 object-contain shrink-0"
                     src={
                       item.product.image?.[0]
-                        ? `${backendURL}/images/${item.product.image[0]}`
+                        ? `https://groceryapp-backend-552v.onrender.com/images/${item.product.image[0]}`
                         : placeholderImage
                     }
                     alt={item.product.name}
