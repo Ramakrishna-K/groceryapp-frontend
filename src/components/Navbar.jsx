@@ -5,7 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useAppContext } from "../context/appContext";
 import { assets } from "../assets/assets";
 import toast from "react-hot-toast";
-const backendURL = import.meta.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
+// const backendURL = import.meta.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
@@ -42,7 +42,7 @@ const Navbar = () => {
   // Logout
   const logout = async () => {
     try {
-      const { data } = await axios.get(`${backendURL}/api/user/logout`, {
+      const { data } = await axios.get(`https://groceryapp-backend-552v.onrender.com/api/user/logout`, {
         withCredentials: true,
       });
       if (data.success) {
