@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { dummyProducts } from "../assets/assets";
 import toast from "react-hot-toast";
 import axios from "axios";
-const backendURL = import.meta.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
+// const backendURL = import.meta.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
 
 // Axios defaults
 axios.defaults.withCredentials = true;
@@ -27,7 +27,7 @@ export const AppProvider = ({ children }) => {
   // ✅ Fetch seller status
   const fetchSeller = async () => {
     try {
-      const { data } = await axios.get(`${backendURL}/api/seller/is-auth`);
+      const { data } = await axios.get(`https://groceryapp-backend-552v.onrender.com/api/seller/is-auth`);
       setIsSeller(data.success || false);
     } catch {
       setIsSeller(false);
@@ -37,7 +37,7 @@ export const AppProvider = ({ children }) => {
   // ✅ Fetch user auth and cart data
   const fetchUser = async () => {
     try {
-      const { data } = await axios.get(`${backendURL}/api/user/is-auth`);
+      const { data } = await axios.get(`https://groceryapp-backend-552v.onrender.com/api/user/is-auth`);
       if (data.success) {
         setUser(data.user);
         setCartItems(data.user.cart || {});
@@ -50,7 +50,7 @@ export const AppProvider = ({ children }) => {
   // ✅ Fetch products
   const fetchProducts = async () => {
     try {
-      const { data } = await axios.get(`${backendURL}/api/product/list`);
+      const { data } = await axios.get(`https://groceryapp-backend-552v.onrender.com/api/product/list`);
       if (data.success) setProducts(data.products);
       else toast.error(data.message);
     } catch (error) {
@@ -106,7 +106,7 @@ export const AppProvider = ({ children }) => {
     const updateCart = async () => {
       try {
         if (!user) return;
-        const { data } = await axios.post(`${backendURL}/api/cart/update`, { cartItems });
+        const { data } = await axios.post(`https://groceryapp-backend-552v.onrender.com/api/cart/update`, { cartItems });
         if (!data.success) toast.error(data.message);
       } catch (error) {
         toast.error(error.message);
