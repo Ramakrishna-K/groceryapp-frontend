@@ -4,7 +4,7 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 import { assets } from "../../assets/assets";
 import { useAppContext } from "../../context/appContext";
 import toast from "react-hot-toast";
-const backendURL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+// const backendURL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
 
 const SellerLayout = () => {
   const { setIsSeller, axios, navigate } = useAppContext();
@@ -21,7 +21,7 @@ const SellerLayout = () => {
 
   const logout = async () => {
     try {
-      const { data } = await axios.get(`${backendURL}/api/seller/logout`);
+      const { data } = await axios.get(`https://groceryapp-backend-552v.onrender.com/api/seller/logout`);
       if (data.success) {
         setIsSeller(false);
         toast.success("Logged out successfully");
