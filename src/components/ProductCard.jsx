@@ -3,7 +3,7 @@
 import { assets } from "../assets/assets";
 import { useAppContext } from "../context/appContext";
 
-const backendURL = import.meta.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
+// const backendURL = import.meta.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
 const ProductCard = ({ product }) => {
   const { addToCart, removeFromCart, cartItems, navigate } = useAppContext();
 
@@ -20,7 +20,7 @@ const ProductCard = ({ product }) => {
       {/* IMAGE */}
       <div className="w-full aspect-square flex items-center justify-center">
         <img
-          src={`${backendURL}/images/${product.image[0]}`}
+          src={`https://groceryapp-backend-552v.onrender.com/images/${product.image[0]}`}
           alt={product.name}
           className="max-h-24 sm:max-h-28 md:max-h-32 object-contain transition-transform duration-300 group-hover:scale-105"
         />
