@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from "react";
 import { assets } from "../assets/assets";
 import { AppContext } from "../context/appContext";
 import toast from "react-hot-toast";
-const backendURL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+// const backendURL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
 
 const Address = () => {
   const [address, setAddress] = React.useState({
@@ -27,7 +27,7 @@ const Address = () => {
   const submitHanlder = async (e) => {
     try {
       e.preventDefault();
-      const { data } = await axios.post(`${backendURL}/api/address/add`, { address });
+      const { data } = await axios.post(`https://groceryapp-backend-552v.onrender.com/api/address/add`, { address });
 
       if (data.success) {
         toast.success(data.message);
