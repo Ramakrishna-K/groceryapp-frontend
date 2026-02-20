@@ -2,7 +2,7 @@ import { assets, categories } from "../../assets/assets";
 import { useContext, useState } from "react";
 import { AppContext } from "../../context/appContext";
 import toast from "react-hot-toast";
-const backendURL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+// const backendURL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
 
 
 const AddProduct = () => {
@@ -29,7 +29,7 @@ const AddProduct = () => {
         formData.append("image", files[i]);
       }
 
-      const { data } = await axios.post(`${backendURL}/api/product/add-product`, formData);
+      const { data } = await axios.post(`https://groceryapp-backend-552v.onrender.com/api/product/add-product`, formData);
       if (data.success) {
         toast.success(data.message);
         setName("");
