@@ -5,7 +5,7 @@
 import toast from "react-hot-toast";
 import { useAppContext } from "../../context/appContext";
 import React, { useState, useEffect } from "react";
-const backendURL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+// const backendURL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
 
 const SellerLogin = () => {
   const { isSeller, setIsSeller, navigate, axios } = useAppContext();
@@ -23,7 +23,7 @@ const SellerLogin = () => {
 
     try {
       const { data } = await axios.post(
-        `${backendURL}/api/seller/login`,
+        `https://groceryapp-backend-552v.onrender.com/api/seller/login`,
         { email, password },
         {
           withCredentials: true, // if backend uses cookies
