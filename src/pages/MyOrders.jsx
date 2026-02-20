@@ -2,7 +2,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../context/appContext";
 import toast from "react-hot-toast";
-const backendURL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+// const backendURL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
 
 const MyOrders = () => {
   const [myOrders, setMyOrders] = useState([]);
@@ -11,7 +11,7 @@ const MyOrders = () => {
   // Fetch orders
   const fetchOrders = async () => {
     try {
-      const { data } = await axios.get(`${backendURL}/api/order/user`);
+      const { data } = await axios.get(`https://groceryapp-backend-552v.onrender.com/api/order/user`);
       if (data.success) {
         setMyOrders(data.orders);
       } else {
@@ -85,7 +85,7 @@ const MyOrders = () => {
                       {/* Product Info */}
                       <div className="flex items-center gap-3">
                         <img
-                          src={`${backendURL}/images/${image}`}
+                          src={`https://groceryapp-backend-552v.onrender.com/images/${image}`}
                           alt={product.name}
                           className="w-14 h-14 object-cover max-w-full"
                         />
