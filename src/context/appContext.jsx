@@ -592,7 +592,7 @@ export const AppProvider = ({ children }) => {
     const updateCart = async () => {
       if (!user) return;
       try {
-        const { data } = await axios.post(
+        const { data } = await axios.put(
           "https://groceryapp-backend-552v.onrender.com/api/cart/update",
           { cartItems },
           { withCredentials: true } // 🔑 MUST send cookie
