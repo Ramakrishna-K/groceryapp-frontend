@@ -494,18 +494,34 @@ export const AppProvider = ({ children }) => {
   const [searchQuery, setSearchQuery] = useState("");
 
   // ===== FETCH SELLER STATUS =====
-  const fetchSeller = async () => {
-    try {
-      const { data } = await axios.get(
-        "https://groceryapp-backend-552v.onrender.com/api/seller/is-auth",
-        { withCredentials: true } // 🔑 send cookie
-      );
-      setIsSeller(data.success || false);
-    } catch {
-      setIsSeller(false);
-    }
-  };
-
+  // const fetchSeller = async () => {
+  //   try {
+  //     const { data } = await axios.get(
+  //       "https://groceryapp-backend-552v.onrender.com/api/seller/is-auth",
+  //       { withCredentials: true } // 🔑 send cookie
+  //     );
+  //     setIsSeller(data.success || false);
+  //   } catch {
+  //     setIsSeller(false);
+  //   }
+  // };
+const fetchSeller = async () => {
+  try {
+    const token = localStorage.getItem("sellerToken"); // fetch token stored after login
+    const { data } = await axios.get(
+      "https://groceryapp-backend-552v.onrender.com/api/seller/is-auth",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`, // 🔑 send JWT token
+        },
+      }
+    );
+    setIsSeller(data.success || false);
+  } catch (error) {
+    console.log(error.response?.data || error.message);
+    setIsSeller(false);
+  }
+};
   // ===== FETCH USER AUTH & CART =====
   const fetchUser = async () => {
     try {
