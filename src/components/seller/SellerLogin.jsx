@@ -23,7 +23,7 @@ const SellerLogin = () => {
 
     try {
       const { data } = await axios.post(
-        `https://groceryapp-backend-552v.onrender.com/api/seller/login`,
+        "https://groceryapp-backend-552v.onrender.com/api/seller/login",
         { email, password },
         {
           withCredentials: true, // if backend uses cookies
