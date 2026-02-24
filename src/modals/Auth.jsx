@@ -160,7 +160,7 @@ const Auth = () => {
       // 🔹 LOGIN
       if (state === "login") {
         const { data } = await axios.post(
-          `https://groceryapp-backend-552v.onrender.com/api/user/login`,
+          "https://groceryapp-backend-552v.onrender.com/api/user/login",
           { email, password },
           { withCredentials: true }
         );
@@ -181,7 +181,7 @@ const Auth = () => {
       // 🔹 REGISTER
       if (state === "register") {
         const { data } = await axios.post(
-          `https://groceryapp-backend-552v.onrender.com/api/user/register`,
+          "https://groceryapp-backend-552v.onrender.com/api/user/register",
           { name, email, password },
           { withCredentials: true }
         );
