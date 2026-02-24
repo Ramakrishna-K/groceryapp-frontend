@@ -507,18 +507,13 @@ export const AppProvider = ({ children }) => {
   // };
 const fetchSeller = async () => {
   try {
-    const token = localStorage.getItem("sellerToken"); // fetch token stored after login
     const { data } = await axios.get(
       "https://groceryapp-backend-552v.onrender.com/api/seller/is-auth",
-      {
-        headers: {
-          Authorization: `Bearer ${token}`, // 🔑 send JWT token
-        },
-      }
+      { withCredentials: true } // 🔥 REQUIRED
     );
-    setIsSeller(data.success || false);
+
+    setIsSeller(data.success);
   } catch (error) {
-    console.log(error.response?.data || error.message);
     setIsSeller(false);
   }
 };
