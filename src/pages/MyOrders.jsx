@@ -34,13 +34,13 @@ const MyOrders = () => {
           const age = Date.now() - new Date(order.createdAt).getTime();
           let status = "Pending";
 
-          if (age >= 3 * 60 * 10) status = "Delivered";
-          else if (age >= 1 * 60 * 10) status = "Order Placed";
+          if (age >= 3 * 60 * 1000) status = "Delivered";
+          else if (age >= 1 * 60 * 1000) status = "Order Placed";
 
           return { ...order, status };
         })
       );
-    }, 60);
+    }, 6000);
 
     return () => clearInterval(interval);
   }, []);
